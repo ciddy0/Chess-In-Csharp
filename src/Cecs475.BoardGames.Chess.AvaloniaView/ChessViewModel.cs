@@ -11,34 +11,144 @@ using System.Runtime.CompilerServices;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView {
 	
-	/// <summary>
-	/// Composes a 
-	/// </summary>
-	public class ChessViewModel : IGameViewModel {
+	public class ChessSquare : INotifyPropertyChanged
+	{
+		public ChessSquare Self => this;
+		private int mPlayer;
 
-		public ChessViewModel() {
+		public int Player
+		{
+			get { return mPlayer; }
+			set
+			{
+				if (value != mPlayer)
+				{
+					mPlayer = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+		
+		public BoardPosition Position
+		{
+			get; set;
+		}
+		
+		private bool mIsHighlighted;
+
+		public bool IsHighlighted 
+		{
+			get
+			{
+				return mIsHighlighted; 
+				
+			}
+			set {
+				if (value != mIsHighlighted) 
+				{
+					mIsHighlighted = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangedEventHandler? PropertyChanged;
+		private void OnPropertyChanged([CallerMemberName]string? name = null) 
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
 
+		public override string ToString() 
+		{
+			return $"Square {Position}";
+		}
+		
+	}
+	
+	public class ChessViewModel : INotifyPropertyChanged, IGameViewModel{
+		private readonly ChessBoard mBoard;
+		private readonly ObservableCollection<ChessSquare> mSquares;
+		private BoardPosition? mSelectedSquare;
+		
+		public ChessViewModel()
+		{
+			mBoard = new ChessBoard();
+			
+			mSquares = new ObservableCollection<ChessSquare>
+			(BoardPosition.GetRectangularPositions(8, 8)
+					.Select(pos => new ChessSquare() {
+						Position = pos,
+						Player = mBoard.GetPlayerAtPosition(pos)
+					})
+				);
+			
+			PossibleMoves = new HashSet<BoardPosition>(
+				mBoard.GetPossibleMoves().Cast<ChessMove>().Select(move => move.StartPosition));
+		}
+
+		public ObservableCollection<ChessSquare> Squares => mSquares;
+		
 		public int CurrentPlayer {
 			get {
-				throw new NotImplementedException();
+				return mBoard.CurrentPlayer;
+			}
+		}
+		
+		public bool CanUndo => mBoard.MoveHistory.Any();
+
+		public GameAdvantage BoardAdvantage => mBoard.CurrentAdvantage;
+		
+		public void UndoMove()
+		{
+			if (CanUndo)
+			{
+				mBoard.UndoLastMove();
+				RebindState();
 			}
 		}
 
-		public bool CanUndo {
-			get {
-				throw new NotImplementedException();
+		private void RebindState()
+		{
+			foreach (var square in mSquares)
+			{
+				square.Player = mBoard.GetPlayerAtPosition(square.Position);
+				square.IsHighlighted = false;
+			}
+			
+			PossibleMoves = new HashSet<BoardPosition>(
+				mBoard.GetPossibleMoves().Cast<ChessMove>().Select(move => move.StartPosition)
+				);
+			
+			OnPropertyChanged(nameof(PossibleMoves));
+			OnPropertyChanged(nameof(BoardAdvantage));
+			OnPropertyChanged(nameof(CurrentPlayer));
+			OnPropertyChanged(nameof(CanUndo));
+		}
+
+		public void ApplyMove(BoardPosition position)
+		{
+			IEnumerable<ChessMove> possMoves = mBoard.GetPossibleMoves().Cast<ChessMove>();
+			foreach (var move in possMoves)
+			{
+				if (move.EndPosition.Equals(position))
+				{
+					mBoard.ApplyMove(move);
+					break;
+				}
+			}
+
+			RebindState();
+
+			if (mBoard.IsFinished)
+			{
+				GameFinished?.Invoke(this, new EventArgs());
 			}
 		}
 
-		public GameAdvantage BoardAdvantage => throw new NotImplementedException();
-
-
-		public void UndoMove() {
-			throw new NotImplementedException();
+		public HashSet<BoardPosition> PossibleMoves {
+			get; private set;
 		}
-
-		// Invoke this event after applying a move if the game is now finished.
+		
 		public event EventHandler? GameFinished;
 		public event PropertyChangedEventHandler? PropertyChanged;
 
