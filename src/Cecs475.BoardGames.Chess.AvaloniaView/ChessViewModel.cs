@@ -70,20 +70,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		private readonly ObservableCollection<ChessSquare> mSquares;
 		private BoardPosition? mSelectedSquare;
 		
-		public ChessViewModel()
-		{
-			mBoard = new ChessBoard();
-			
-			mSquares = new ObservableCollection<ChessSquare>
-			(BoardPosition.GetRectangularPositions(8, 8)
-					.Select(pos => new ChessSquare() {
-						Position = pos,
-						Player = mBoard.GetPlayerAtPosition(pos)
-					})
-				);
-			
-			PossibleMoves = new HashSet<BoardPosition>(
-				mBoard.GetPossibleMoves().Cast<ChessMove>().Select(move => move.StartPosition));
+		public ChessViewModel() {
 		}
 
 		public ObservableCollection<ChessSquare> Squares {

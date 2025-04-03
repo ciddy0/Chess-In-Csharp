@@ -16,7 +16,7 @@
         <ItemsControl x:Name="BoardPositions" ItemsSource="{Binding Squares}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="8" Rows="8" Background="Green"/>
+                    <UniformGrid Columns="8" Rows="8" Background="Blue"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
