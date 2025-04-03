@@ -86,12 +86,13 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 				mBoard.GetPossibleMoves().Cast<ChessMove>().Select(move => move.StartPosition));
 		}
 
-		public ObservableCollection<ChessSquare> Squares => mSquares;
+		public ObservableCollection<ChessSquare> Squares {
+			get { return mSquares; }
+		}
 		
-		public int CurrentPlayer {
-			get {
-				return mBoard.CurrentPlayer;
-			}
+		public int CurrentPlayer 
+		{
+			get {return mBoard.CurrentPlayer; }
 		}
 		
 		public bool CanUndo => mBoard.MoveHistory.Any();

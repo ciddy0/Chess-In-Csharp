@@ -2,12 +2,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:local="clr-namespace:Cecs475.BoardGames.Chess.AvaloniaView"
+             xmlns:local="clr-namespace:Cecs475.BoardGames.Chess.AvaloniaView"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Cecs475.BoardGames.Chess.AvaloniaView.ChessView" >
-	<UserControl.Resources>
-		<local:ChessViewModel x:Key="vm"/>
-		<!-- TODO: declare other static resources, like converters. -->
-	</UserControl.Resources>
-	<!-- Generate an 8x8 grid of chess pieces, similar to Othello. -->
+             x:Class="Cecs475.BoardGames.Chess.AvaloniaView.ChessView">
+    <UserControl.Resources>
+        <local:ChessViewModel x:Key="vm"/>
+        <!-- TODO: declare other static resources, like converters. -->
+        <local:ChessSquarePlayerConverter x:Key="PlayerColor"/>
+        <local:ChessSquareBackgroundConverter x:Key="BackgroundColor"/>
+    </UserControl.Resources>
+    <!-- Set the DataContext and its type on the Grid -->
+    <Grid DataContext="{StaticResource vm}" x:DataType="local:ChessViewModel">
+        <ItemsControl x:Name="BoardPositions" ItemsSource="{Binding Squares}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="8" Rows="8" Background="Green"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="local:ChessSquare">
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <Panel PointerEntered="Panel_PointerEntered"
+                               PointerExited="Panel_PointerExited"
+                               PointerReleased="Panel_PointerReleased">
+                            <Panel.Background>
+                                <MultiBinding Converter="{StaticResource BackgroundColor}">
+                                    <Binding Path="Position"/>
+                                    <Binding Path="IsHighlighted"/>
+                                </MultiBinding>
+                            </Panel.Background>
+                            <ContentControl Content="{Binding Player, Converter={StaticResource PlayerColor}}"/>
+                        </Panel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
 </UserControl>
