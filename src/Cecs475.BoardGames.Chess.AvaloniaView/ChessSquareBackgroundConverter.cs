@@ -3,36 +3,23 @@ using Cecs475.BoardGames.Model;
 using System.Globalization;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
+using System.Collections.Generic;
 
-namespace Cecs475.BoardGames.Chess.AvaloniaView 
-{
-    class ChessSquareBackgroundConverter : IValueConverter
-    {
+namespace Cecs475.BoardGames.Chess.AvaloniaView {
+    public class ChessSquareBackgroundConverter : IMultiValueConverter {
         private static readonly IBrush HIGHLIGHT_BRUSH = Brushes.Red;
         private static readonly IBrush DARK_BRUSH = Brushes.DarkGreen;
         private static readonly IBrush LIGHT_BRUSH = Brushes.LightGreen;
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is ChessSquare square)
-            {
-                if (square.IsHighlighted)
-                {
-                    return HIGHLIGHT_BRUSH;
-                }
-
-                int sum = square.Position.Row + square.Position.Col;
-                return (sum % 2 == 0) ? LIGHT_BRUSH : DARK_BRUSH;
-            }
-
-            return LIGHT_BRUSH;
+        public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture) {
+            if (values.Count < 2 || values[0] is not BoardPosition pos || values[1] is not bool isHighLighted) 
+                return LIGHT_BRUSH;
+            
+            if (isHighLighted)
+                return HIGHLIGHT_BRUSH;
+            int sum = pos.Row + pos.Col;
+            return (sum % 2 == 0) ? LIGHT_BRUSH : DARK_BRUSH;
         }
-        
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-        
     }
 }
 
