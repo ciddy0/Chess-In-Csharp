@@ -8,6 +8,7 @@
   <UserControl.Resources>
     <local:ChessViewModel x:Key="vm"/>
     <!-- Declare other static resources, like converters. -->
+    <local:ChessPieceImageConverter x:Key="ChessPieceImageConverter"/>
     <local:ChessSquarePlayerConverter x:Key="PlayerColor"/>
     <local:ChessSquareBackgroundConverter x:Key="BackgroundColor"/>
   </UserControl.Resources>
@@ -35,7 +36,9 @@
                 <Binding Path="IsHighlighted"/>
               </MultiBinding>
             </Panel.Background>
-            <ContentControl Content="{Binding Player, Converter={StaticResource PlayerColor}}"/>
+            <ContentControl Content="{Binding Player, Converter={StaticResource PlayerColor}}">
+            </ContentControl>
+            
           </Panel>
         </Border>
       </DataTemplate>

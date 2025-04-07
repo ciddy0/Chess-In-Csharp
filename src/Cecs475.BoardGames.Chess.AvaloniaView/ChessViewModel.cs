@@ -25,7 +25,19 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 				}
 			}
 		}
-		
+		private ChessPieceType mPieceType;
+		public ChessPieceType PieceType
+		{
+			get { return mPieceType; }
+			set
+			{
+				if (value != mPieceType)
+				{
+					mPieceType = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 		public BoardPosition Position {
 			get; set;
 		}
