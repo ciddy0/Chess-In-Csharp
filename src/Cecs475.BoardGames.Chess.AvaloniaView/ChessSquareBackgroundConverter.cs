@@ -7,7 +7,8 @@ using System.Collections.Generic;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView {
     public class ChessSquareBackgroundConverter : IMultiValueConverter {
-        private static readonly IBrush HIGHLIGHT_BRUSH = Brushes.Red;
+        private static readonly IBrush INCHECK_BRUSH = Brushes.DarkRed;
+        private static readonly IBrush HIGHLIGHT_BRUSH = Brushes.Goldenrod;
         private static readonly IBrush DARK_BRUSH = Brushes.DarkGreen;
         private static readonly IBrush LIGHT_BRUSH = Brushes.LightGreen;
 
