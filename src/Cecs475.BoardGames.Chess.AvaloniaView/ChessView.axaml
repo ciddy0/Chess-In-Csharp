@@ -38,7 +38,7 @@
             </Panel.Background>
             
             <Image Source="{Binding ., Converter={StaticResource ChessPieceImageConverter}}" />
-            
+
           </Panel>
         </Border>
       </DataTemplate>

@@ -43,6 +43,8 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		}
 		
 		private bool mIsHighlighted;
+		
+		private bool mIsSelected;
 
 		public bool IsHighlighted {
 			get {
@@ -52,6 +54,19 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			set {
 				if (value != mIsHighlighted) {
 					mIsHighlighted = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public bool IsSelected {
+			get {
+				return mIsSelected; 
+				
+			}
+			set {
+				if (value != mIsSelected) {
+					mIsSelected = value;
 					OnPropertyChanged();
 				}
 			}

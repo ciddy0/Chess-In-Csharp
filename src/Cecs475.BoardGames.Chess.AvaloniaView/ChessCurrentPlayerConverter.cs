@@ -12,7 +12,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
             if (value is not int player) {
                 throw new ArgumentException();
             }
-            return player == 1 ? "Black" : "White";
+            return player == 1 ? "White" : "Black";
         }
 
         public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {

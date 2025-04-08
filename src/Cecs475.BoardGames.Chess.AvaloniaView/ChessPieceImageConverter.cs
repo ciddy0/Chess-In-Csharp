@@ -34,22 +34,22 @@ public class ChessPieceImageConverter: IValueConverter {
         {
             case 1: // White pieces
                 return pieceType switch {
-                    ChessPieceType.Pawn => "pawn-w",
-                    ChessPieceType.King => "king-w",
-                    ChessPieceType.Queen => "queen-w",
-                    ChessPieceType.Rook => "rook-w",
-                    ChessPieceType.Bishop => "bishop-w",
-                    ChessPieceType.Knight => "knight-w",
+                    ChessPieceType.Pawn => "wp",
+                    ChessPieceType.King => "wk",
+                    ChessPieceType.Queen => "wq",
+                    ChessPieceType.Rook => "wr",
+                    ChessPieceType.Bishop => "wb",
+                    ChessPieceType.Knight => "wn",
                 };
 
             case 2: // Black pieces
                 return pieceType switch {
-                    ChessPieceType.Pawn => "pawn-b",
-                    ChessPieceType.King => "king-b",
-                    ChessPieceType.Queen => "queen-b",
-                    ChessPieceType.Rook => "rook-b",
-                    ChessPieceType.Bishop => "bishop-b",
-                    ChessPieceType.Knight => "knight-b",
+                    ChessPieceType.Pawn => "bp",
+                    ChessPieceType.King => "bk",
+                    ChessPieceType.Queen => "bq",
+                    ChessPieceType.Rook => "br",
+                    ChessPieceType.Bishop => "bb",
+                    ChessPieceType.Knight => "bn",
                 };
 
             default:

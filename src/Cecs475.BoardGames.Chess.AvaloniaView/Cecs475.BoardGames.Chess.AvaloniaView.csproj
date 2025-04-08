@@ -35,10 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Resources\knight-w.png" />
     <AvaloniaResource Include="Resources\knight-w.png" />
     <None Remove="Resources\bishop-b.png" />
@@ -63,5 +59,29 @@
     <AvaloniaResource Include="Resources\rook-b.png" />
     <None Remove="Resources\rook-w.png" />
     <AvaloniaResource Include="Resources\rook-w.png" />
+    <None Remove="Resources\bb.png" />
+    <AvaloniaResource Include="Resources\bb.png" />
+    <None Remove="Resources\bk.png" />
+    <AvaloniaResource Include="Resources\bk.png" />
+    <None Remove="Resources\bn.png" />
+    <AvaloniaResource Include="Resources\bn.png" />
+    <None Remove="Resources\bp.png" />
+    <AvaloniaResource Include="Resources\bp.png" />
+    <None Remove="Resources\bq.png" />
+    <AvaloniaResource Include="Resources\bq.png" />
+    <None Remove="Resources\br.png" />
+    <AvaloniaResource Include="Resources\br.png" />
+    <None Remove="Resources\wb.png" />
+    <AvaloniaResource Include="Resources\wb.png" />
+    <None Remove="Resources\wk.png" />
+    <AvaloniaResource Include="Resources\wk.png" />
+    <None Remove="Resources\wn.png" />
+    <AvaloniaResource Include="Resources\wn.png" />
+    <None Remove="Resources\wp.png" />
+    <AvaloniaResource Include="Resources\wp.png" />
+    <None Remove="Resources\wq.png" />
+    <AvaloniaResource Include="Resources\wq.png" />
+    <None Remove="Resources\wr.png" />
+    <AvaloniaResource Include="Resources\wr.png" />
   </ItemGroup>
 </Project>
