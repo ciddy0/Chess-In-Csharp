@@ -81,9 +81,12 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			// Populate the board with ChessSquare objects and bind the property change listeners
 			for (int row = 0; row < 8; row++) {
 				for (int col = 0; col < 8; col++) {
+					var pos = new BoardPosition(row, col);
+					var piece = mBoard.GetPieceAtPosition(pos);
 					var square = new ChessSquare {
-						Position = new BoardPosition(row, col),
+						Position = pos,
 						Player = mBoard.GetPlayerAtPosition(new BoardPosition(row, col)),
+						PieceType = piece.PieceType,
 						IsHighlighted = false
 					};
 					square.PropertyChanged += ChessSquare_PropertyChanged;

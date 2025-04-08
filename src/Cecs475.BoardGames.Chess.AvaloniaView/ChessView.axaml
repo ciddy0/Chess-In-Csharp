@@ -26,7 +26,7 @@
     
     <ItemsControl.ItemTemplate>
       <DataTemplate x:DataType="local:ChessSquare">
-        <Border BorderThickness="1" BorderBrush="Blue">
+        <Border BorderThickness="1" BorderBrush="Black">
           <Panel PointerEntered="Panel_PointerEntered" 
                  PointerExited="Panel_PointerExited" 
                  PointerReleased="Panel_PointerReleased">
@@ -36,8 +36,8 @@
                 <Binding Path="IsHighlighted"/>
               </MultiBinding>
             </Panel.Background>
-            <ContentControl Content="{Binding Player, Converter={StaticResource PlayerColor}}">
-            </ContentControl>
+            
+            <Image Source="{Binding ., Converter={StaticResource ChessPieceImageConverter}}" />
             
           </Panel>
         </Border>

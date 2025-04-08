@@ -36,6 +36,32 @@
 
   <ItemGroup>
     <Folder Include="images\" />
-    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\knight-w.png" />
+    <AvaloniaResource Include="Resources\knight-w.png" />
+    <None Remove="Resources\bishop-b.png" />
+    <AvaloniaResource Include="Resources\bishop-b.png" />
+    <None Remove="Resources\bishop-w.png" />
+    <AvaloniaResource Include="Resources\bishop-w.png" />
+    <None Remove="Resources\king-b.png" />
+    <AvaloniaResource Include="Resources\king-b.png" />
+    <None Remove="Resources\king-w.png" />
+    <AvaloniaResource Include="Resources\king-w.png" />
+    <None Remove="Resources\knight-b.png" />
+    <AvaloniaResource Include="Resources\knight-b.png" />
+    <None Remove="Resources\pawn-b.png" />
+    <AvaloniaResource Include="Resources\pawn-b.png" />
+    <None Remove="Resources\pawn-w.png" />
+    <AvaloniaResource Include="Resources\pawn-w.png" />
+    <None Remove="Resources\queen-b.png" />
+    <AvaloniaResource Include="Resources\queen-b.png" />
+    <None Remove="Resources\queen-w.png" />
+    <AvaloniaResource Include="Resources\queen-w.png" />
+    <None Remove="Resources\rook-b.png" />
+    <AvaloniaResource Include="Resources\rook-b.png" />
+    <None Remove="Resources\rook-w.png" />
+    <AvaloniaResource Include="Resources\rook-w.png" />
   </ItemGroup>
 </Project>
