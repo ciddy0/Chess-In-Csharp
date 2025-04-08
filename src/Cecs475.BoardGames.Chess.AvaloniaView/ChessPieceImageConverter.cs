@@ -1,12 +1,12 @@
 using Cecs475.BoardGames.Chess.Model;
-
-namespace Cecs475.BoardGames.Chess.AvaloniaView;
 using Avalonia.Data.Converters;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using System;
 using System.Globalization;
 
+namespace Cecs475.BoardGames.Chess.AvaloniaView
+{
 public class ChessPieceImageConverter: IValueConverter {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
@@ -34,22 +34,22 @@ public class ChessPieceImageConverter: IValueConverter {
         {
             case 1: // White pieces
                 return pieceType switch {
-                    ChessPieceType.Pawn => "pawn-w",
-                    ChessPieceType.King => "king-w",
-                    ChessPieceType.Queen => "queen-w",
-                    ChessPieceType.Rook => "rook-w",
-                    ChessPieceType.Bishop => "bishop-w",
-                    ChessPieceType.Knight => "knight-w",
+                    ChessPieceType.Pawn => "white-pawn",
+                    ChessPieceType.King => "white-king",
+                    ChessPieceType.Queen => "white-queen",
+                    ChessPieceType.Rook => "white-rook",
+                    ChessPieceType.Bishop => "white-bishop",
+                    ChessPieceType.Knight => "white-knight",
                 };
 
             case 2: // Black pieces
                 return pieceType switch {
-                    ChessPieceType.Pawn => "pawn-b",
-                    ChessPieceType.King => "king-b",
-                    ChessPieceType.Queen => "queen-b",
-                    ChessPieceType.Rook => "rook-b",
-                    ChessPieceType.Bishop => "bishop-b",
-                    ChessPieceType.Knight => "knight-b",
+                    ChessPieceType.Pawn => "black-pawn",
+                    ChessPieceType.King => "black-king",
+                    ChessPieceType.Queen => "black-queen",
+                    ChessPieceType.Rook => "black-rook",
+                    ChessPieceType.Bishop => "black-bishop",
+                    ChessPieceType.Knight => "black-knight",
                 };
 
             default:
@@ -62,4 +62,5 @@ public class ChessPieceImageConverter: IValueConverter {
         throw new NotImplementedException();
     }
 }
-    
+        
+}
