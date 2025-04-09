@@ -170,7 +170,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 				    && square.PieceType == ChessPieceType.King
 				    && square.Player == mBoard.CurrentPlayer)
 				{
-					square.IsSelected = true;
+					square.IsInCheck = true;
 				}
 				else
 				{
