@@ -4,20 +4,25 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView
 {
-public class ChessPieceImageConverter: IValueConverter {
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+public class ChessPieceImageConverter: IMultiValueConverter {
+    public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
     {
-        Console.WriteLine(value);
-        if (value is ChessSquare square && square.PieceType != ChessPieceType.Empty)
+        Console.WriteLine(values);
+        if (values.Count >= 2 &&
+            values[0] is ChessPieceType pieceType &&
+            values[1] is int player &&
+            pieceType != ChessPieceType.Empty)
         {
-            string pieceImage = GetPieceImage(square.Player, square.PieceType);
+            string pieceImage = GetPieceImage(player, pieceType);
             Console.WriteLine(pieceImage);
+            
             if (!string.IsNullOrEmpty(pieceImage))
             {
-                Console.WriteLine($"Converting: {square.PieceType} {square.Player}");
+                Console.WriteLine($"Converting: {pieceType} {player}");
                 Console.WriteLine($"Trying to load: avares://Cecs475.BoardGames.Chess.AvaloniaView/Resources/{pieceImage}.png");
                 return new Bitmap(
                     AssetLoader.Open(

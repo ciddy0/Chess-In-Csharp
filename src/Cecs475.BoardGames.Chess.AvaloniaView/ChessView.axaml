@@ -32,14 +32,19 @@
                  PointerReleased="Panel_PointerReleased">
             <Panel.Background>
               <MultiBinding Converter="{StaticResource BackgroundColor}">
-                <Binding Path="Position"/>
-                <Binding Path="IsHighlighted"/>
+                <Binding Path="Position" />
+                <Binding Path="IsHighlighted" />
                 <Binding Path="IsSelected" />
               </MultiBinding>
             </Panel.Background>
-            
-            <Image Source="{Binding ., Converter={StaticResource ChessPieceImageConverter}}" />
-
+            <Image>
+              <Image.Source>
+                <MultiBinding Converter="{StaticResource ChessPieceImageConverter}">
+                  <Binding Path="PieceType" />
+                  <Binding Path="Player" />
+                </MultiBinding>
+              </Image.Source>
+            </Image>
           </Panel>
         </Border>
       </DataTemplate>
