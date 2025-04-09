@@ -35,6 +35,7 @@
                 <Binding Path="Position" />
                 <Binding Path="IsHighlighted" />
                 <Binding Path="IsSelected" />
+                <Binding Path="IsInCheck" />
               </MultiBinding>
             </Panel.Background>
             <Image>

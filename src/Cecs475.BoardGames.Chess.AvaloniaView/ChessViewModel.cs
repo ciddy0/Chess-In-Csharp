@@ -43,30 +43,52 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		}
 		
 		private bool mIsHighlighted;
-		
 		private bool mIsSelected;
+		private bool mIsInCheck;
 
-		public bool IsHighlighted {
-			get {
+		public bool IsHighlighted 
+		{
+			get 
+			{
 				return mIsHighlighted; 
 				
 			}
 			set {
-				if (value != mIsHighlighted) {
+				if (value != mIsHighlighted) 
+				{
 					mIsHighlighted = value;
 					OnPropertyChanged();
 				}
 			}
 		}
 
-		public bool IsSelected {
-			get {
+		public bool IsSelected 
+		{
+			get 
+			{
 				return mIsSelected; 
-				
 			}
-			set {
-				if (value != mIsSelected) {
+			set 
+			{
+				if (value != mIsSelected) 
+				{
 					mIsSelected = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+		
+		public bool IsInCheck
+		{
+			get
+			{
+				return mIsInCheck;
+			}
+			set
+			{
+				if (mIsInCheck != value)
+				{
+					mIsInCheck = value;
 					OnPropertyChanged();
 				}
 			}
@@ -134,12 +156,27 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			}
 		}
 
-		private void RebindState() {
+		private void RebindState() 
+		{
+			bool kingInCheck = mBoard.IsCheck;
+			
 			foreach (var square in mSquares) {
 				square.Player = mBoard.GetPlayerAtPosition(square.Position);
 				square.PieceType = mBoard.GetPieceAtPosition(square.Position).PieceType;
 				square.IsHighlighted = false;
 				square.IsSelected = false;
+
+				if (kingInCheck
+				    && square.PieceType == ChessPieceType.King
+				    && square.Player == mBoard.CurrentPlayer)
+				{
+					square.IsSelected = true;
+				}
+				else
+				{
+					square.IsInCheck = false;
+				}
+
 			}
     
 			OnPropertyChanged(nameof(BoardAdvantage));
