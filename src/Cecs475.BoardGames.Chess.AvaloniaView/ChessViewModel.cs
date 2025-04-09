@@ -137,27 +137,65 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		private void RebindState() {
 			foreach (var square in mSquares) {
 				square.Player = mBoard.GetPlayerAtPosition(square.Position);
+				square.PieceType = mBoard.GetPieceAtPosition(square.Position).PieceType;
 				square.IsHighlighted = false;
+				square.IsSelected = false;
 			}
-			
+    
 			OnPropertyChanged(nameof(BoardAdvantage));
 			OnPropertyChanged(nameof(CurrentPlayer));
 			OnPropertyChanged(nameof(CanUndo));
 		}
 
+		public void UpdatePossibleMovesForSelectedSquare(BoardPosition? selected)
+		{
+			if (selected == null)
+			{
+				PossibleMoves = new HashSet<BoardPosition>(
+					from ChessMove m in mBoard.GetPossibleMoves()
+					select m.StartPosition
+				);
+			} else {
+				PossibleMoves = new HashSet<BoardPosition>(
+					from ChessMove m in mBoard.GetPossibleMoves().Cast<ChessMove>()
+					where m.StartPosition.Equals(selected)
+					select m.EndPosition
+				);
+			}
+			OnPropertyChanged(nameof(PossibleMoves));
+
+		}
+		
 		public void ApplyMove(BoardPosition position) {
-			IEnumerable<ChessMove> possMoves = mBoard.GetPossibleMoves().Cast<ChessMove>();
+			var possMoves = mBoard.GetPossibleMoves().Cast<ChessMove>();
 			foreach (var move in possMoves) {
-				if (move.EndPosition.Equals(position)) {
+				if (SelectedSquare != null &&
+				    move.StartPosition.Equals(SelectedSquare) &&
+				    move.EndPosition.Equals(position)) {
 					mBoard.ApplyMove(move);
 					break;
 				}
 			}
 
+			SelectedSquare = null;
 			RebindState();
 
 			if (mBoard.IsFinished) {
-				GameFinished?.Invoke(this, new EventArgs());
+				GameFinished?.Invoke(this, EventArgs.Empty);
+			}
+		}
+
+		public BoardPosition? SelectedSquare
+		{
+			get => mSelectedSquare;
+			set
+			{
+				if (mSelectedSquare != value)
+				{
+					mSelectedSquare = value;
+					OnPropertyChanged();
+					UpdatePossibleMovesForSelectedSquare(mSelectedSquare);
+				}
 			}
 		}
 		public event PropertyChangedEventHandler? PropertyChanged;

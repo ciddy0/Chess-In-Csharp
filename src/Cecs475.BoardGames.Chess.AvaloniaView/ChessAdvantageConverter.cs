@@ -16,8 +16,8 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
             if (v.Player == 0)
                 return "Tie game";
             if (v.Player == 1)
-                return $"Black is winning by {v.Advantage} pieces";
-            return $"White is winning by {v.Advantage} pieces";
+                return $"White is winning by {v.Advantage} pieces";
+            return $"Black is winning by {v.Advantage} pieces";
         }
 
         public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {

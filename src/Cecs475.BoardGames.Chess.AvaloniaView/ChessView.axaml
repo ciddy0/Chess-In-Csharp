@@ -34,6 +34,7 @@
               <MultiBinding Converter="{StaticResource BackgroundColor}">
                 <Binding Path="Position"/>
                 <Binding Path="IsHighlighted"/>
+                <Binding Path="IsSelected" />
               </MultiBinding>
             </Panel.Background>
             
