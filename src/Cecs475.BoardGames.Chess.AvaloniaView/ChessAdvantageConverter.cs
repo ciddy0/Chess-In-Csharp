@@ -10,17 +10,20 @@ using Avalonia.Data.Converters;
 namespace Cecs475.BoardGames.Chess.AvaloniaView {
     public class ChessAdvantageConverter : IValueConverter {
         public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) {
-            if (value is not GameAdvantage v) {
+            if (value is not GameAdvantage v) 
+            {
                 throw new ArgumentException();
             }
+            
             if (v.Player == 0)
                 return "Tie game";
             if (v.Player == 1)
-                return $"White is winning by {v.Advantage} pieces";
-            return $"Black is winning by {v.Advantage} pieces";
+                return $"White has a +{v.Advantage} advantage";
+            return $"Black has a +{v.Advantage} pieces";
         }
 
-        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) {
+        public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) 
+        {
             throw new NotImplementedException();
         }
     }
