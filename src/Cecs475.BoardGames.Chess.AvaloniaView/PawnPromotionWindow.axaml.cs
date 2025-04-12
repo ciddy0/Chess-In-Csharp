@@ -4,22 +4,54 @@ using Cecs475.BoardGames.Chess.Model;
 using Cecs475.BoardGames.Model;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView
 {
 
     public partial class PawnPromotionWindow : Window
     {
-        public PawnPromotionWindow()
+        private readonly ChessViewModel mViewModel;
+        private readonly BoardPosition mStart;
+        private readonly BoardPosition mEnd;
+        
+        public PawnPromotionWindow(ChessViewModel viewModel, BoardPosition start, BoardPosition end)
         {
-            //InitializeComponent();
+            InitializeComponent();
+            mViewModel = viewModel;
+            mStart = start;
+            mEnd = end;
         }
+
+        private void mKnightBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Knight);
+            Close();
+        }
+
+        private void mBishopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Bishop);
+            Close();
+        }
+
+        private void mRookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Rook);
+            Close();
+        }
+        private void mQueenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Queen);
+            Close();
+        }
+        
+        private void InitializeComponent()
+        {
+            AvaloniaXamlLoader.Load(this);
+        }
+
     }
 }

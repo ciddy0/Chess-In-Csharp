@@ -222,6 +222,21 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			}
 		}
 
+		public void ApplyPawnPromo(BoardPosition start, BoardPosition end, ChessPieceType promotionPiece)
+		{
+			Cecs475.BoardGames.Chess.Model.PawnPromotionChessMove move = 
+				new Cecs475.BoardGames.Chess.Model.PawnPromotionChessMove(start, end, promotionPiece);
+			
+			mBoard.ApplyMove(move);
+			RebindState();
+
+
+			if (mBoard.IsFinished)
+			{
+				GameFinished?.Invoke(this, EventArgs.Empty);
+			}
+		}
+
 		public BoardPosition? SelectedSquare
 		{
 			get => mSelectedSquare;

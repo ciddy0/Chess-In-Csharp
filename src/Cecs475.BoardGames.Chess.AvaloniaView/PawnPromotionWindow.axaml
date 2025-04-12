@@ -4,18 +4,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cecs475.BoardGames.Chess.AvaloniaView"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Cecs475.BoardGames.Chess.AvaloniaView.PawnPromotionWindow" >
-        
-        <Border Background="White" Padding="10">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
-                <TextBlock Text="Promote pawn to:" FontSize="20" HorizontalAlignment="Center">
-                <UniformGrid Columns="4" Rows="1" HorizontalAlignment="Center">
-                    <Button x:Name="KnightButton" Content="Knight" Margin="5" Padding="5"/>
-                    <Button x:Name="BishopButton" Content="Bishop" Margin="5" Padding="5"/>
-                    <Button x:Name="RookButton" Content="Rook" Margin="5" Padding="5"/>
-                    <Button x:Name="QueenButton" Content="Queen" Margin="5" Padding="5"/>
-                </UniformGrid>
-                </TextBlock>        
-            </StackPanel>
-        </Border>
+        x:Class="Cecs475.BoardGames.Chess.AvaloniaView.PawnPromotionWindow"
+        Title="Pawn Promotion" Width="300" FontSize="16"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Label>Promote your pawn:</Label>
+        <Button Content="Knight" Click="mKnightBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Bishop" Click="mBishopBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Rook"   Click="mRookBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Queen"  Click="mQueenBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+    </StackPanel>
 </Window>
