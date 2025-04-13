@@ -218,7 +218,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			RebindState();
 
 			if (mBoard.IsFinished) {
-				GameFinished?.Invoke(this, EventArgs.Empty);
+				GameFinished?.Invoke(this, new EventArgs());
 			}
 		}
 
@@ -233,7 +233,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 
 			if (mBoard.IsFinished)
 			{
-				GameFinished?.Invoke(this, EventArgs.Empty);
+				GameFinished?.Invoke(this, new EventArgs());
 			}
 		}
 

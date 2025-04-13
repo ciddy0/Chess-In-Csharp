@@ -5,11 +5,15 @@
         xmlns:local="clr-namespace:Cecs475.BoardGames.Chess.AvaloniaView"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Cecs475.BoardGames.Chess.AvaloniaView.PawnPromotionWindow"
-        Title="Pawn Promotion" Width="300" FontSize="16"
+        Title="Pawn Promotion" 
+        Width="300" 
+        FontSize="16"
         SizeToContent="Height"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="None"
+        CanResize="False">
     <StackPanel>
-        <Label>Promote your pawn:</Label>
+        <Label>Promote pawn to:</Label>
         <Button Content="Knight" Click="mKnightBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
         <Button Content="Bishop" Click="mBishopBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
         <Button Content="Rook"   Click="mRookBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>

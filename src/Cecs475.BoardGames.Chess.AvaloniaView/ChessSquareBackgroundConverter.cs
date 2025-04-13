@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView {
     public class ChessSquareBackgroundConverter : IMultiValueConverter {
-        private static readonly IBrush DARK_BRUSH = Brushes.OliveDrab;
+        private static readonly IBrush DARK_BRUSH = Brushes.SaddleBrown;
         private static readonly IBrush LIGHT_BRUSH = Brushes.Linen;
-        private static readonly IBrush HIGHLIGHT_BRUSH = Brushes.Khaki;
-        private static readonly IBrush SELECTED_BRUSH = Brushes.DarkKhaki;
-        private static readonly IBrush INCHECK_BRUSH = Brushes.DarkRed;
+        private static readonly IBrush HIGHLIGHT_BRUSH = Brushes.ForestGreen;
+        private static readonly IBrush SELECTED_BRUSH = Brushes.DarkRed;
+        private static readonly IBrush INCHECK_BRUSH = Brushes.DarkGoldenrod;
         public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture) {
             if (values.Count < 4 
                 || values[0] is not BoardPosition pos 
