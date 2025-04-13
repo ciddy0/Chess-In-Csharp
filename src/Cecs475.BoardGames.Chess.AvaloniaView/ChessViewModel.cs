@@ -139,6 +139,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		public void UndoMove() {
 			if (CanUndo) {
 				mBoard.UndoLastMove();
+				SelectedSquare = null;
 				RebindState();
 			}
 		}
@@ -162,7 +163,11 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 				}
 
 			}
-    
+
+			PossibleMoves = new HashSet<BoardPosition>(
+				from ChessMove m in mBoard.GetPossibleMoves()
+				select m.StartPosition);
+			OnPropertyChanged(nameof(PossibleMoves));
 			OnPropertyChanged(nameof(BoardAdvantage));
 			OnPropertyChanged(nameof(CurrentPlayer));
 			OnPropertyChanged(nameof(CanUndo));
