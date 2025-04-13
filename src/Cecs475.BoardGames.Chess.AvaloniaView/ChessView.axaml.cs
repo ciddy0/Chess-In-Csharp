@@ -44,6 +44,9 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView
             {
                 throw new ArgumentException(nameof(sender));
             }
+
+            if (b.DataContext is not ChessSquare chessSquare)
+                return;
             
             var square = (ChessSquare)b.DataContext!;
             square.IsHighlighted = false;

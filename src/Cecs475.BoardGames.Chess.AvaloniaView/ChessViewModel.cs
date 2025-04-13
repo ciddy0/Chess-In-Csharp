@@ -42,6 +42,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		private bool mIsHighlighted;
 		private bool mIsSelected;
 		private bool mIsInCheck;
+		
 
 		public bool IsHighlighted {
 			get {
@@ -142,8 +143,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			}
 		}
 
-		private void RebindState() 
-		{
+		private void RebindState() {
 			bool kingInCheck = mBoard.IsCheck;
 			
 			foreach (var square in mSquares) {
@@ -154,12 +154,10 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 
 				if (kingInCheck
 				    && square.PieceType == ChessPieceType.King
-				    && square.Player == mBoard.CurrentPlayer)
-				{
+				    && square.Player == mBoard.CurrentPlayer) {
 					square.IsInCheck = true;
 				}
-				else
-				{
+				else {
 					square.IsInCheck = false;
 				}
 
@@ -170,10 +168,8 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			OnPropertyChanged(nameof(CanUndo));
 		}
 
-		public void UpdatePossibleMovesForSelectedSquare(BoardPosition? selected)
-		{
-			if (selected == null)
-			{
+		public void UpdatePossibleMovesForSelectedSquare(BoardPosition? selected) {
+			if (selected == null) {
 				PossibleMoves = new HashSet<BoardPosition>(
 					from ChessMove m in mBoard.GetPossibleMoves()
 					select m.StartPosition
@@ -190,6 +186,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		}
 		
 		public void ApplyMove(BoardPosition position) {
+			if (mBoard.IsFinished) return;
 			var possMoves = mBoard.GetPossibleMoves().Cast<ChessMove>();
 			foreach (var move in possMoves) {
 				if (SelectedSquare != null &&
@@ -208,8 +205,8 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			}
 		}
 
-		public void ApplyPawnPromo(BoardPosition start, BoardPosition end, ChessPieceType promotionPiece)
-		{
+		public void ApplyPawnPromo(BoardPosition start, BoardPosition end, ChessPieceType promotionPiece) {
+			if (mBoard.IsFinished) return;
 			Cecs475.BoardGames.Chess.Model.PawnPromotionChessMove move = 
 				new Cecs475.BoardGames.Chess.Model.PawnPromotionChessMove(start, end, promotionPiece);
 			
@@ -217,19 +214,15 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			RebindState();
 
 
-			if (mBoard.IsFinished)
-			{
+			if (mBoard.IsFinished) {
 				GameFinished?.Invoke(this, new EventArgs());
 			}
 		}
 
-		public BoardPosition? SelectedSquare
-		{
+		public BoardPosition? SelectedSquare {
 			get => mSelectedSquare;
-			set
-			{
-				if (mSelectedSquare != value)
-				{
+			set {
+				if (mSelectedSquare != value) {
 					mSelectedSquare = value;
 					OnPropertyChanged();
 					UpdatePossibleMovesForSelectedSquare(mSelectedSquare);
