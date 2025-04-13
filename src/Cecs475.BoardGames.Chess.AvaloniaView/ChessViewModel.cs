@@ -11,8 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView {
 	
-	public class ChessSquare : INotifyPropertyChanged
-	{
+	public class ChessSquare : INotifyPropertyChanged {
 		public ChessSquare Self => this;
 		private int mPlayer;
 
@@ -26,11 +25,9 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			}
 		}
 		private ChessPieceType mPieceType;
-		public ChessPieceType PieceType
-		{
+		public ChessPieceType PieceType {
 			get { return mPieceType; }
-			set
-			{
+			set {
 				if (value != mPieceType)
 				{
 					mPieceType = value;
@@ -46,48 +43,37 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		private bool mIsSelected;
 		private bool mIsInCheck;
 
-		public bool IsHighlighted 
-		{
-			get 
-			{
+		public bool IsHighlighted {
+			get {
 				return mIsHighlighted; 
 				
 			}
 			set {
-				if (value != mIsHighlighted) 
-				{
+				if (value != mIsHighlighted) {
 					mIsHighlighted = value;
 					OnPropertyChanged();
 				}
 			}
 		}
 
-		public bool IsSelected 
-		{
-			get 
-			{
+		public bool IsSelected {
+			get {
 				return mIsSelected; 
 			}
-			set 
-			{
-				if (value != mIsSelected) 
-				{
+			set {
+				if (value != mIsSelected) {
 					mIsSelected = value;
 					OnPropertyChanged();
 				}
 			}
 		}
 		
-		public bool IsInCheck
-		{
-			get
-			{
+		public bool IsInCheck {
+			get {
 				return mIsInCheck;
 			}
-			set
-			{
-				if (mIsInCheck != value)
-				{
+			set {
+				if (mIsInCheck != value) {
 					mIsInCheck = value;
 					OnPropertyChanged();
 				}
