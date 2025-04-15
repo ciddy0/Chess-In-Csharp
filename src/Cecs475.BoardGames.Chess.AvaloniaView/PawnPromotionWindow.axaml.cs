@@ -23,7 +23,10 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView
             mViewModel = viewModel;
             mStart = start;
             mEnd = end;
+            DataContext = viewModel;
         }
+
+        public ChessViewModel ChessViewModel => (ChessViewModel)Resources["vm"];
 
         private void mKnightBtn_Click(object sender, RoutedEventArgs e)
         {

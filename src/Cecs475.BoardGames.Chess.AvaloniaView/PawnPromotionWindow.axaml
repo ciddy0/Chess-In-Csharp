@@ -1,22 +1,78 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:d="https://github.com/avaloniaui/design"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cecs475.BoardGames.Chess.AvaloniaView"
+        xmlns:model="clr-namespace:Cecs475.BoardGames.Chess.Model;assembly=Cecs475.BoardGames.Chess.Model"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Cecs475.BoardGames.Chess.AvaloniaView.PawnPromotionWindow"
-        Title="Pawn Promotion" 
-        Width="300" 
-        FontSize="16"
-        SizeToContent="Height"
-        WindowStartupLocation="CenterScreen"
-        SystemDecorations="None"
-        CanResize="False">
+        x:DataType="local:ChessViewModel"
+        Title="Pawn Promotion" Width="300" Height="400" FontSize="16"
+        SizeToContent="Height" WindowStartupLocation="CenterScreen"
+        SystemDecorations="None" CanResize="False">
+    
+    <Window.Resources>
+        <local:ChessPieceImageConverter x:Key="ChessPieceImageConverter" />
+    </Window.Resources>
+    
     <StackPanel>
-        <Label>Promote pawn to:</Label>
-        <Button Content="Knight" Click="mKnightBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Bishop" Click="mBishopBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Rook"   Click="mRookBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Queen"  Click="mQueenBtn_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+        
+        <Label Content = "Promote pawn to:" HorizontalAlignment="Center" />
+        <Button Click="mBishopBtn_Click" HorizontalAlignment="Stretch" Background="SlateGray">
+            <Image Width="100" Height="100">
+                <Image.Source>
+                    <MultiBinding Converter="{StaticResource ChessPieceImageConverter}">
+                        <Binding>
+                            <Binding.Source>
+                                <x:Static Member="model:ChessPieceType.Bishop"/>
+                            </Binding.Source>
+                        </Binding>
+                        <Binding Path="CurrentPlayer" />
+                    </MultiBinding>
+                </Image.Source>
+            </Image>
+        </Button>
+        <Button Click="mKnightBtn_Click" HorizontalAlignment="Stretch" Background="SlateGray">
+            <Image Width="100" Height="100">
+                <Image.Source>
+                    <MultiBinding Converter="{StaticResource ChessPieceImageConverter}">
+                        <Binding>
+                            <Binding.Source>
+                                <x:Static Member="model:ChessPieceType.Knight"/>
+                            </Binding.Source>
+                        </Binding>
+                        <Binding Path="CurrentPlayer" />
+                    </MultiBinding>
+                </Image.Source>
+            </Image>
+        </Button>
+        <Button Click="mRookBtn_Click" HorizontalAlignment="Stretch" Background="SlateGray">
+            <Image Width="100" Height="100">
+                <Image.Source>
+                    <MultiBinding Converter="{StaticResource ChessPieceImageConverter}">
+                        <Binding>
+                            <Binding.Source>
+                                <x:Static Member="model:ChessPieceType.Rook"/>
+                            </Binding.Source>
+                        </Binding>
+                        <Binding Path="CurrentPlayer" />
+                    </MultiBinding>
+                </Image.Source>
+            </Image>
+        </Button>
+        <Button Click="mQueenBtn_Click" HorizontalAlignment="Stretch" Background="SlateGray">
+            <Image Width="100" Height="100">
+                <Image.Source>
+                    <MultiBinding Converter="{StaticResource ChessPieceImageConverter}">
+                        <Binding>
+                            <Binding.Source>
+                                <x:Static Member="model:ChessPieceType.Queen"/>
+                            </Binding.Source>
+                        </Binding>
+                        <Binding Path="CurrentPlayer" />
+                    </MultiBinding>
+                </Image.Source>
+            </Image>
+        </Button>   
     </StackPanel>
 </Window>
