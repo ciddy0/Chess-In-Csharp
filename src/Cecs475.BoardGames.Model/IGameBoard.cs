@@ -45,6 +45,8 @@ namespace Cecs475.BoardGames.Model {
 		/// </summary>
 		/// <see cref="IsFinished"/>
 		GameAdvantage CurrentAdvantage { get; }
+		
+		long BoardWeight { get; }
 
 	}
 }

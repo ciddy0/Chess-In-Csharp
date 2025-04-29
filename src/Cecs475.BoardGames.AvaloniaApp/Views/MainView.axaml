@@ -7,9 +7,12 @@
              xmlns:aview="using:Cecs475.BoardGames.AvaloniaView"
 			 >
 	<DockPanel DataContext="{DynamicResource ViewModel}" x:CompileBindings="False">
-		<StackPanel DockPanel.Dock="Top" >
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 			<Button IsEnabled="{Binding CanUndo}"
 					Padding="4" Click="Button_Click">Undo last move</Button>
+			<Button IsEnabled="{Binding CanUndo}"
+			        Padding="4" Click="Button_Click">AI current move</Button>
+			
 		</StackPanel>
 		<StackPanel DockPanel.Dock="Bottom" Height="35" Orientation="Horizontal">
 			<Label>Advantage:</Label>
