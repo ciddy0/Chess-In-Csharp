@@ -8,17 +8,14 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using System;
 
-namespace Cecs475.BoardGames.Chess.AvaloniaView
-{
+namespace Cecs475.BoardGames.Chess.AvaloniaView {
 
-    public partial class PawnPromotionWindow : Window
-    {
+    public partial class PawnPromotionWindow : Window {
         private readonly ChessViewModel mViewModel;
         private readonly BoardPosition mStart;
         private readonly BoardPosition mEnd;
         
-        public PawnPromotionWindow(ChessViewModel viewModel, BoardPosition start, BoardPosition end)
-        {
+        public PawnPromotionWindow(ChessViewModel viewModel, BoardPosition start, BoardPosition end) {
             InitializeComponent();
             mViewModel = viewModel;
             mStart = start;
@@ -28,31 +25,26 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView
 
         public ChessViewModel ChessViewModel => (ChessViewModel)Resources["vm"];
 
-        private void mKnightBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void mKnightBtn_Click(object sender, RoutedEventArgs e) {
             mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Knight);
             Close();
         }
 
-        private void mBishopBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void mBishopBtn_Click(object sender, RoutedEventArgs e) {
             mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Bishop);
             Close();
         }
 
-        private void mRookBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void mRookBtn_Click(object sender, RoutedEventArgs e) {
             mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Rook);
             Close();
         }
-        private void mQueenBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void mQueenBtn_Click(object sender, RoutedEventArgs e) {
             mViewModel.ApplyPawnPromo(mStart, mEnd, ChessPieceType.Queen);
             Close();
         }
         
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             AvaloniaXamlLoader.Load(this);
         }
 

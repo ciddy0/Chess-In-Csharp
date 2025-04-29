@@ -5,8 +5,7 @@ using MsBox.Avalonia;
 
 namespace Cecs475.BoardGames.AvaloniaApp;
 
-public partial class MainView : UserControl
-{
+public partial class MainView : UserControl {
 	public IAvaloniaGameFactory GameFactory {
 		set {
 			var ov = value.CreateGameView();
@@ -38,10 +37,10 @@ public partial class MainView : UserControl
 		
 	}
 
-	private void ViewModel_GameFinished(object? sender, System.EventArgs e) {
-		var message = MessageBoxManager.GetMessageBoxStandard("Game over!", "Game over!");
-		message.ShowAsPopupAsync(this);
-	}
+    private async void ViewModel_GameFinished(object? sender, System.EventArgs e) {
+	    var message = MessageBoxManager.GetMessageBoxStandard("Game over!", "Game over!");
+	    await message.ShowAsync();
+    }
 
 	private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) {
         var vm = (IGameViewModel)Resources["ViewModel"]!;

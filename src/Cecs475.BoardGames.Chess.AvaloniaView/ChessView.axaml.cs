@@ -62,23 +62,17 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView
             var square = (ChessSquare)squareControl.DataContext!;
             var vm = (ChessViewModel)Resources["vm"]!;
 
-            if (vm.SelectedSquare == null)
-            {
-                if (square.Player == vm.CurrentPlayer && vm.PossibleMoves.Contains(square.Position))
-                {
+            if (vm.SelectedSquare == null) {
+                if (square.Player == vm.CurrentPlayer && vm.PossibleMoves.Contains(square.Position)) {
                     vm.SelectedSquare = square.Position;  
                     square.IsSelected = true;            
                 }
             }
-            else
-            {
-                if (vm.PossibleMoves.Contains(square.Position)) 
-                {
+            else {
+                if (vm.PossibleMoves.Contains(square.Position)) {
                     var selectedSquare = vm.Squares.FirstOrDefault(s => s.Position.Equals(vm.SelectedSquare));
-                    if (selectedSquare != null && selectedSquare.PieceType == ChessPieceType.Pawn)
-                    {
+                    if (selectedSquare != null && selectedSquare.PieceType == ChessPieceType.Pawn) {
                         bool isPromotion = false;
-                        
                         if (selectedSquare.Player == 1 && square.Position.Row == 0)
                             isPromotion = true;
                         else if (selectedSquare.Player == 2 && square.Position.Row == 7)
@@ -113,6 +107,5 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView
             var promotionWindow = new PawnPromotionWindow(ChessViewModel, start, end);
             await promotionWindow.ShowDialog(owner);
         }
-
     }
 }
