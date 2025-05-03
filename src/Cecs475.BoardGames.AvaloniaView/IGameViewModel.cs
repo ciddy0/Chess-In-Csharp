@@ -12,6 +12,7 @@ namespace Cecs475.BoardGames.AvaloniaView {
 		int CurrentPlayer { get; }
 		bool CanUndo { get; }
 		void UndoMove();
+		Task MakeAIMoveAsync();
 		event EventHandler? GameFinished;
 	}
 }

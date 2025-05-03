@@ -46,4 +46,22 @@ public partial class MainView : UserControl {
         var vm = (IGameViewModel)Resources["ViewModel"]!;
         vm.UndoMove();
 	}
+	
+	private async void AIMoveButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) {
+		var vm = (IGameViewModel)Resources["ViewModel"]!;
+		var button = (Button)sender;
+		try {
+			// Disable button while our thinker (AI) is thinking!
+			button.IsEnabled = false;
+			button.Content = "Thinking...";
+        
+			// make the AI find best move YIPPEE
+			await vm.MakeAIMoveAsync();
+		}
+		finally {
+			// Re-enable button after our thinker is done
+			button.IsEnabled = true;
+			button.Content = "AI move";
+		}
+	}
 }

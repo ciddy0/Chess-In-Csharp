@@ -10,8 +10,9 @@
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
 			<Button IsEnabled="{Binding CanUndo}"
 					Padding="4" Click="Button_Click">Undo last move</Button>
-			<Button IsEnabled="{Binding CanUndo}"
-			        Padding="4" Click="Button_Click">AI current move</Button>
+			<Button Name="mAIMoveButton" IsEnabled="{Binding CanAI}"
+			        Padding="4" Click="AIMoveButton_Click">AI current move</Button>
+			<Label x:Name="mAIMove" Content="{Binding AIMove}"/>
 			
 		</StackPanel>
 		<StackPanel DockPanel.Dock="Bottom" Height="35" Orientation="Horizontal">
