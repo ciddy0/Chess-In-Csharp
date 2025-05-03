@@ -6,6 +6,7 @@ namespace Cecs475.BoardGames.Model
 {
     public static class MinimaxOpponent {
         
+        // 5 took to long 4 seemed to be the sweet spot
         private const int DefaultDepth = 4;
         
         public static IGameMove? FindBestMove(IGameBoard board) {

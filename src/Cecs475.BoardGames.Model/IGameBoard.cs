@@ -38,6 +38,7 @@ namespace Cecs475.BoardGames.Model {
 		/// True if the game has finished and a winner has been determined.
 		/// </summary>
 		bool IsFinished { get; }
+		long BoardWeight { get; }
 
 		/// <summary>
 		/// A value indicating which player is winning the game. When IsFinished is true, this value indicates
