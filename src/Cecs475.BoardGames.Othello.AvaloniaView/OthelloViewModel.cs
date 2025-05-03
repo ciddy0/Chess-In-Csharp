@@ -165,6 +165,11 @@ namespace Cecs475.BoardGames.Othello.AvaloniaView {
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
 
+		public async Task MakeAIMoveAsync()
+		{
+			
+		}
+
 		public void UndoMove() {
 			if (CanUndo) {
 				mBoard.UndoLastMove();

@@ -92,6 +92,11 @@ namespace Cecs475.BoardGames.TicTacToe.AvaloniaView {
 			}
 		}
 
+		public async Task MakeAIMoveAsync()
+		{
+			
+		}
+		
 		public ObservableCollection<TicTacToeSquare> Squares {
 			get { return mSquares; }
 		}

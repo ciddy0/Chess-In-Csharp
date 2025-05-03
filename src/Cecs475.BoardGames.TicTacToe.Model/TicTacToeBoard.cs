@@ -13,7 +13,7 @@ namespace Cecs475.BoardGames.TicTacToe.Model {
 	public class TicTacToeBoard : IGameBoard {
 		private int mPlayer;
 		private sbyte[,] mBoard = new sbyte[3, 3];
-
+		public long BoardWeight { get; }
 		private List<TicTacToeMove> mMoveHistory = new List<TicTacToeMove>();
 
 		public TicTacToeBoard() {
