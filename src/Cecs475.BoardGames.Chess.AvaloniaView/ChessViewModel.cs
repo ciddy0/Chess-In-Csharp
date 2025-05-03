@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Cecs475.BoardGames.Chess.AvaloniaView {
 	
@@ -97,6 +98,16 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		private readonly ObservableCollection<ChessSquare> mSquares;
 		private BoardPosition? mSelectedSquare;
 		public event EventHandler? GameFinished;
+		private string _aiMove;
+		public string AIMove
+		{
+			get => _aiMove;
+			private set
+			{
+				_aiMove = value;
+				OnPropertyChanged();
+			}
+		}
 		
 		public ChessViewModel() {
 			mBoard = new ChessBoard();
@@ -141,6 +152,16 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 				mBoard.UndoLastMove();
 				SelectedSquare = null;
 				RebindState();
+			}
+		}
+
+		public async Task MakeAIMoveAsync() {
+			try {
+				AIMove = "Calculating...";
+				var move = await Task.Run(() => MinimaxOpponent.FindBestMove(mBoard));
+				AIMove = move?.ToString() ?? "No valid move";
+			}catch (Exception ex) {
+				AIMove = $"Error: {ex.Message}";
 			}
 		}
 
