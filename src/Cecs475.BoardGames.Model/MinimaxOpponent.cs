@@ -6,7 +6,7 @@ namespace Cecs475.BoardGames.Model
 {
     public static class MinimaxOpponent {
         
-        private const int DefaultDepth = 3;
+        private const int DefaultDepth = 4;
         
         public static IGameMove? FindBestMove(IGameBoard board) {
             bool isMaximizing = board.CurrentPlayer == 1;
