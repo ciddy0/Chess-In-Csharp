@@ -7,13 +7,30 @@
              xmlns:aview="using:Cecs475.BoardGames.AvaloniaView"
 			 >
 	<DockPanel DataContext="{DynamicResource ViewModel}" x:CompileBindings="False">
-		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+		
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+			<Label Content="Mode:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+			<RadioButton Content="2-Player"
+			             IsChecked="{Binding IsTwoPlayer, Mode=TwoWay}"
+			             VerticalAlignment="Center"
+			             Margin="0,0,8,0"/>
+			<RadioButton Content="1-Player (AI)"
+			             IsChecked="{Binding IsOnePlayer, Mode=TwoWay}"
+			             VerticalAlignment="Center"/>
+		</StackPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
 			<Button IsEnabled="{Binding CanUndo}"
-					Padding="4" Click="Button_Click">Undo last move</Button>
-			<Button Name="mAIMoveButton" IsEnabled="{Binding CanAI}"
-			        Padding="4" Click="AIMoveButton_Click">AI current move</Button>
-			<Label x:Name="mAIMove" Content="{Binding AIMove}"/>
-			
+			        Padding="4" Click="Button_Click">
+				Undo Last Move
+			</Button>
+			<Button Name="mAIMoveButton"
+			        IsEnabled="{Binding CanAI}"
+			        Padding="4"
+			        Click="AIMoveButton_Click"
+			        Margin="8,0,0,0">
+				AI Current Move
+			</Button>
+			<Label x:Name="mAIMove" Content="{Binding AIMove}" Margin="8,0,0,0"/>
 		</StackPanel>
 		<StackPanel DockPanel.Dock="Bottom" Height="35" Orientation="Horizontal">
 			<Label>Advantage:</Label>

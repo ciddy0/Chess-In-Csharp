@@ -25,6 +25,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 				}
 			}
 		}
+		
 		private ChessPieceType mPieceType;
 		public ChessPieceType PieceType {
 			get { return mPieceType; }
@@ -93,6 +94,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		
 	}
 	
+	
 	public class ChessViewModel : INotifyPropertyChanged, IGameViewModel{
 		private readonly ChessBoard mBoard;
 		private readonly ObservableCollection<ChessSquare> mSquares;
@@ -127,6 +129,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 					square.PropertyChanged += ChessSquare_PropertyChanged;
 					mSquares.Add(square);
 				}
+				IsOnePlayer = true;
 			}
 			PossibleMoves = new HashSet<BoardPosition>(
 				from ChessMove m in mBoard.GetPossibleMoves()
@@ -137,6 +140,25 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		public ObservableCollection<ChessSquare> Squares {
 			get { return mSquares; }
 		}
+		
+		private bool mIsOnePlayer = true;   // default to AI mode on startup
+		public bool IsOnePlayer {
+			get => mIsOnePlayer;
+			set {
+				if (mIsOnePlayer == value) return;
+				mIsOnePlayer = value;
+				OnPropertyChanged(nameof(IsOnePlayer));
+				OnPropertyChanged(nameof(IsTwoPlayer));
+				OnPropertyChanged(nameof(CanAI));
+			}
+		}
+		public bool IsTwoPlayer {
+			get => !mIsOnePlayer;
+			set => IsOnePlayer = !value;
+		}
+
+		// Expose to XAML so the button can bind directly
+		public bool CanAI => IsOnePlayer;
 		
 		public int CurrentPlayer {
 			get {return mBoard.CurrentPlayer; }
@@ -157,10 +179,19 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 
 		public async Task MakeAIMoveAsync() {
 			try {
-				AIMove = "Calculating...";
-				var move = await Task.Run(() => MinimaxOpponent.FindBestMove(mBoard));
-				AIMove = move?.ToString() ?? "No valid move";
-			}catch (Exception ex) {
+				AIMove = "Calculating…";
+				IGameMove? generic = await Task.Run(() => MinimaxOpponent.FindBestMove(mBoard));
+
+				if (generic is ChessMove aiMove) {
+					mBoard.ApplyMove(aiMove);
+					RebindState();             
+					AIMove = aiMove.ToString();
+				}
+				else {
+					AIMove = "AI did not return a ChessMove.";
+				}
+			}
+			catch (Exception ex) {
 				AIMove = $"Error: {ex.Message}";
 			}
 		}
@@ -264,6 +295,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		private void ChessSquare_PropertyChanged(object? sender, PropertyChangedEventArgs e) {
 			OnPropertyChanged(nameof(Squares)); 
 		}
+		
 
 	}
 }
