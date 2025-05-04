@@ -114,8 +114,6 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 		public ChessViewModel() {
 			mBoard = new ChessBoard();
 			mSquares = new ObservableCollection<ChessSquare>();
-			
-			// Populate the board with ChessSquare objects and bind the property change listeners
 			for (int row = 0; row < 8; row++) {
 				for (int col = 0; col < 8; col++) {
 					var pos = new BoardPosition(row, col);
@@ -141,7 +139,7 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			get { return mSquares; }
 		}
 		
-		private bool mIsOnePlayer = true;   // default to AI mode on startup
+		private bool mIsOnePlayer = true;  
 		public bool IsOnePlayer {
 			get => mIsOnePlayer;
 			set {
@@ -157,7 +155,6 @@ namespace Cecs475.BoardGames.Chess.AvaloniaView {
 			set => IsOnePlayer = !value;
 		}
 
-		// Expose to XAML so the button can bind directly
 		public bool CanAI => IsOnePlayer;
 		
 		public int CurrentPlayer {

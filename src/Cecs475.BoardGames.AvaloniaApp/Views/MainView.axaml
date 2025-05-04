@@ -7,9 +7,8 @@
              xmlns:aview="using:Cecs475.BoardGames.AvaloniaView"
 			 >
 	<DockPanel DataContext="{DynamicResource ViewModel}" x:CompileBindings="False">
-		
 		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
-			<Label Content="Mode:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+			<Label Content="Game Type:" VerticalAlignment="Center" Margin="0,0,8,0"/>
 			<RadioButton Content="2-Player"
 			             IsChecked="{Binding IsTwoPlayer, Mode=TwoWay}"
 			             VerticalAlignment="Center"
