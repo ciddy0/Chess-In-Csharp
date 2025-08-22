@@ -82,7 +82,7 @@ private byte[,] board = new byte[BoardSize, 4];
 ```
 The board uses a compact 4-bit representation per square, storing both piece type and player information efficiently.
 
-## Contributing 🤝
+## Contributing
 This chess engine demonstrates advanced C# programming concepts including:
 
 - Strategy design pattern for piece movements
